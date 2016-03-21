@@ -40,17 +40,9 @@ public class nioClient {
             	System.out.println("3");
                 break;
             case 4:
+            default:
             	disconnection();
             	System.out.println("4");
-            	break;
-            default:
-
-            	try {
-					socket.finishConnect();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
             	return;
         	}
         }

@@ -45,12 +45,7 @@ public class nioClient {
             	break;
             default:
 
-            	try {
-					socket.finishConnect();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+            	socket.finishConnect();
             	return;
         	}
         }
