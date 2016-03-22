@@ -9,6 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import com.nio.model.*;
 import com.nio.util.ChannelHandler;
 import com.nio.util.MessageType;
+import com.sap.course.homework.domain.User;
 
 public class nioServer implements Runnable {
     private ServerSocketChannel serverSocketChannel;
@@ -112,7 +113,6 @@ public class nioServer implements Runnable {
                 User userToDisconnect = connectedChannels.get(socketChannel);
                 connectedChannels.remove(socketChannel);
                 connectedUsers.remove(userToDisconnect);
-                socketChannel.close();
             }
             else {
                 User currentUser = connectedChannels.get(socketChannel);
