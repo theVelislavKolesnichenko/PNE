@@ -42,15 +42,8 @@ public class nioClient {
             case 4:
             	disconnection();
             	System.out.println("4");
-            	break;
+                break;
             default:
-
-            	try {
-					socket.finishConnect();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
             	return;
         	}
         }
@@ -93,9 +86,7 @@ public class nioClient {
         	Message msg = new Message(MessageType.SEND_MESSAGE, 1, " Client to Server ", 2);
         	ChannelHandler.sendMsg(socket, msg);
 	        
-        	msg = ChannelHandler.readMsg(socket);
-        	
-        	System.out.println(msg);
+        	ChannelHandler.readMsg(socket);
         	
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -112,7 +103,8 @@ public class nioClient {
         	
         	Message msg = new Message(MessageType.DISCONNECT, 1, "villimon:villimon", 2);
         	ChannelHandler.sendMsg(socket, msg);
-        
+        	socket.finishConnect();
+	        
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

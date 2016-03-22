@@ -108,12 +108,6 @@ public class nioServer implements Runnable {
                 connectedChannels.put(socketChannel, user);
                 //invalid user
             }
-            else if(msg.getMessageType() == MessageType.DISCONNECT) {
-                User userToDisconnect = connectedChannels.get(socketChannel);
-                connectedChannels.remove(socketChannel);
-                connectedUsers.remove(userToDisconnect);
-                socketChannel.close();
-            }
             else {
                 User currentUser = connectedChannels.get(socketChannel);
                 SocketChannel clientSocketChannel = connectedUsers.get(currentUser);
