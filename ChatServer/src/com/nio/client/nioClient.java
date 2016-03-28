@@ -2,16 +2,22 @@ package com.nio.client;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import com.nio.util.ChannelHandler;
 import com.nio.util.MessageType;
+import com.nio.util.Serialization;
 import com.nio.model.*;
 
 public class nioClient {
 
+	static List<Room> ll = new ArrayList<Room>();
+	
 	private static String host = "localhost";
     private static int port = 8881;
     private static SocketChannel socket;
@@ -79,6 +85,28 @@ public class nioClient {
         	
         	Message msg = new Message(MessageType.LOG_IN, 1, "villimon:villimon", 2);
         	ChannelHandler.sendMsg(socket, msg);
+             
+             try {
+				ll = ChannelHandler.readRooms(socket);
+				
+				System.out.println("Room nomber: " + ll.size());
+				
+				for (Room r : ll) {
+					System.out.format("Room ID: %d\n", r.getId());
+					System.out.format("Room name: %s\n", r.getName());
+					
+					System.out.println("User nomber: " + r.getUsers().size());
+					for (User u : r.getUsers()) {
+						System.out.format("User ID: %d\n", u.getId());
+						System.out.format("User Username: %s\n", u.getUsername());
+						System.out.format("User Password: %s\n", u.getPassword());
+					}
+				}
+				
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	        
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
