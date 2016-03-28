@@ -118,16 +118,25 @@ public class Client extends Application {
 			             
 			 			BorderPane newRoot;
 						try {
-							newRoot = (BorderPane)FXMLLoader.load(getClass().getResource("chat.fxml"));
-				 			Scene scene = new Scene(newRoot,500,500);
-				 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-				 			primaryStage.setScene(scene);
-				 			primaryStage.show();
+							
+							//newRoot = (BorderPane)FXMLLoader.load(getClass().getResource("chat.fxml"));
+				 			//Scene scene = new Scene(newRoot,500,500);
+				 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+				 			//primaryStage.setScene(scene);
+				 			//primaryStage.show();
+				 			
+				 			Group root = new Group(); 
+				 			BorderPane frame = FXMLLoader.load(getClass().getResource("chat.fxml"));
+				 			root.getChildren().add(frame);
+				 			Scene scene = new Scene(root);
+				 			newStage.setScene(scene);
+				 			newStage.show();
+				 			
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-			             VBox vBox = new VBox(newLabel, newLabel1, newLabel2);
+			             //VBox vBox = new VBox(newLabel, newLabel1, newLabel2);
 			                 
 		                //vBox.getChildren().addAll(newLabel, newLabel1, newLabel2/*, btnClose*/);
 //		                Group newRoot = new Group();
